@@ -21,8 +21,8 @@ import { sendEmail } from './modules/email.js'
 const __dirname = path.resolve()
 
 const app = express()
-const server = http.createServer(app)
-const sockets = socketio(server)
+const index = http.createServer(app)
+const sockets = socketio(index)
 
 app.use(express.static('public'))
 app.use(express.json())
@@ -867,7 +867,7 @@ app.get('*', (req, res) => {
 
 const port = process.env.PORT || 3000
 
-server.listen(port, () => {
+index.listen(port, () => {
     console.log(`> Server listening on port ${port}`)
     console.log(`> http://127.0.0.1:${port}`)
 })
