@@ -1,5 +1,4 @@
 'use strict'
-
 import { Game } from './modules/game.js'
 
 import { gamemode, color } from './modules/constants.js'
