@@ -1,6 +1,6 @@
 import express from 'express'
 import http from 'http'
-import socketio from 'socket.io'
+import {Server, Socket} from 'socket.io'
 import stockfish from 'stockfish'
 import path from 'path'
 
@@ -22,7 +22,7 @@ const __dirname = path.resolve()
 
 const app = express()
 const index = http.createServer(app)
-const sockets = socketio(index)
+const sockets = new Server(index)
 
 app.use(express.static('public'))
 app.use(express.json())
