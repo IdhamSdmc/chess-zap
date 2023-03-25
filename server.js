@@ -1,6 +1,6 @@
 import express from 'express'
 import http from 'http'
-import {Server, Socket} from 'socket.io'
+import socketio from 'socket.io'
 import stockfish from 'stockfish'
 import path from 'path'
 
@@ -21,8 +21,8 @@ import { sendEmail } from './modules/email.js'
 const __dirname = path.resolve()
 
 const app = express()
-const index = http.createServer(app)
-const sockets = new Server(index)
+const server = http.createServer(app)
+const sockets = socketio(server)
 
 app.use(express.static('public'))
 app.use(express.json())
@@ -867,7 +867,7 @@ app.get('*', (req, res) => {
 
 const port = process.env.PORT || 3000
 
-index.listen(port, () => {
+server.listen(port, () => {
     console.log(`> Server listening on port ${port}`)
     console.log(`> http://127.0.0.1:${port}`)
 })
